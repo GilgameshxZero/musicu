@@ -1,0 +1,51 @@
+@use "styles/sizes";
+
+.navigator {
+	flex: 0 0 sizes.$length-1;
+	display: flex;
+	flex-flow: row;
+	width: 100%;
+
+	background-color: var(--primary-1);
+
+	.tab {
+		flex: 0 0 sizes.$length-3;
+		display: flex;
+		position: relative;
+		
+		cursor: pointer;
+
+		.text {
+			margin: auto;
+
+			font-size: sizes.$font-1;
+			font-weight: bold;
+			color: var(--primary-6);
+		}
+
+		.highlight {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: sizes.$line-0;
+
+			background-color: var(--primary-3);
+		}
+	}
+
+	.spacer {
+		flex: 1 0 0;
+	}
+
+	.search {
+		flex: 0 1 sizes.$length-7;
+		height: sizes.$length--1;
+		margin: auto sizes.$length--5;
+		padding: 0 sizes.$length--5;
+
+		border-radius: sizes.$radius-0;
+		border: none;
+		font-size: sizes.$font-0;
+	}
+}

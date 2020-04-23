@@ -2,7 +2,8 @@ import * as mongoose from "mongoose";
 import * as express from "express";
 import User, {
   IUser
-} from "./User";
+} from "./models/User";
+import createDumbEndpoints from "./api/dumb";
 
 mongoose.connect("mongodb://localhost/musicu", {
   useNewUrlParser: true,
@@ -26,12 +27,9 @@ db.once("open", function () {
 });
 
 const app: express.Application = express();
-const port: string = process.env.PORT || "61002";
-
-app.get("/dumb", function (req, res) {
-  res.send("⤜(ⱺ ʖ̯ⱺ)⤏");
-});
-
+const port: number = Number(process.env.PORT) || 3000;
+createDumbEndpoints(app);
 app.listen(port, function () {
   console.log("Serving endpoints on port", port + ".");
+  console.log("Specify port by changing the \"PORT\" environment variable.");
 });

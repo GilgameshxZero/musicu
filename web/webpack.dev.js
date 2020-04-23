@@ -3,6 +3,7 @@ const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   mode: "development",
+	entry: "./src/App.dev.tsx",
   watch: true,
   devtool: "inline-source-map",
   devServer: {

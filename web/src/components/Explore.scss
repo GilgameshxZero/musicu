@@ -1,0 +1,35 @@
+@use "styles/sizes";
+
+.explore {
+	height: 100%;
+	display: flex;
+	flex: row;
+	width: 100%;
+
+	&>div {
+		height: 100%;
+	}
+
+	.submenu {
+		flex: 0 0 sizes.$length-5;
+		padding: sizes.$length--3;
+
+		text-align: right;
+		font-size: sizes.$font-1;
+		line-height: 2;
+		background-color: var(--primary-0);
+
+		.selection {
+			cursor: pointer;
+
+			&.selected {
+				font-weight: bold;
+			}
+		}
+	}
+
+	.viewer {
+		flex: 1 0 0;
+		padding: sizes.$length--3;
+	}
+}

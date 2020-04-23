@@ -4,6 +4,11 @@ All your music, everywhere.
 
 ## Changelog
 
+### 0.2.0
+
+* Redesign frontend.
+* Preliminary backend/frontend integration.
+
 ### 0.1.0
 
 * Sketch out layout for frontend.

@@ -1,0 +1,32 @@
+$rpx: 1rem / 16;
+
+$font-0: $rpx * 16;
+$font--1: $font-0 * 0.8;
+$font-1: $font-0 * 1.2;
+$font--2: $font--1 * 0.8;
+$font-2: $font-1 * 1.2;
+
+$radius-0: $rpx * 6;
+
+$line-0: $rpx * 6;
+$line--1: $line-0 * 0.5;
+
+$shadow-0: $rpx * 6;
+
+$length--5: $rpx * 12;
+$length--4: $rpx * 18;
+$length--3: $rpx * 24;
+$length--2: $rpx * 32;
+$length--1: $rpx * 40;
+$length-0: $rpx * 48;
+$length-1: $rpx * 64;
+$length-2: $rpx * 96;
+$length-3: $rpx * 120;
+$length-4: $rpx * 180;
+$length-5: $rpx * 240;
+$length-6: $rpx * 320;
+$length-7: $rpx * 420;
+
+$margin--2: $rpx * 12;
+$margin--1: $rpx * 18;
+$margin-0: $rpx * 24;

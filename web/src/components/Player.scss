@@ -1,0 +1,61 @@
+@use "styles/sizes";
+@use "styles/colors";
+
+.player {
+	flex: 0 0 sizes.$length-0;
+	position: relative;
+	display: flex;
+	flex-flow: row;
+	width: 100%;
+
+	box-shadow: 0 -1 * sizes.$shadow-0 sizes.$shadow-0 colors.$shadow-0;
+	background-color: var(--primary-0);
+	cursor: pointer;
+
+	div {
+		height: 100%;
+		z-index: 1;
+	}
+
+	.progress {
+		position: absolute;
+		z-index: 0;
+
+		background-color: var(--primary-5);
+	}
+
+	.controls {
+		flex: 0 0 auto;
+		display: flex;
+		flex-flow: row;
+		margin: 0 sizes.$length--4;
+
+		img:hover {
+			filter: contrast(150%);
+		}
+
+		.play {
+			padding: 0 sizes.$rpx * 8 0 0;
+		}
+
+		.pause {
+			padding: 0 sizes.$length--5;
+		}
+	}
+
+	.title {
+		flex: 1 1 auto;
+		height: auto;
+		margin: auto 0;
+
+		color: var(--primary-3);
+		font-size: sizes.$font-1;
+		font-weight: bold;
+		justify-content: center;
+		pointer-events: none;
+	}
+
+	.options {
+		flex: 0 0 auto;
+	}
+}
