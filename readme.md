@@ -4,6 +4,12 @@ All your music, everywhere.
 
 ## Changelog
 
+### 0.3.0
+
+* Archived project.
+* Small changes to frontend.
+* Preliminary YouTube integration.
+
 ### 0.2.0
 
 * Redesign frontend.

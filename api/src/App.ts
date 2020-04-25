@@ -4,6 +4,7 @@ import User, {
   IUser
 } from "./models/User";
 import createDumbEndpoints from "./api/dumb";
+import createSearchEndpoints from "./api/search";
 
 mongoose.connect("mongodb://localhost/musicu", {
   useNewUrlParser: true,
@@ -15,10 +16,7 @@ db.on("error", console.error.bind(console, "Connection error:"));
 db.once("open", function () {
   console.log("Database connection open.");
 
-  const newUser: IUser = new User({
-    name: "user-0",
-  });
-  newUser.speak();
+  const newUser: IUser = new User();
   newUser.save(function (error: mongoose.Error, result: IUser) {
     User.countDocuments({}, function (error: mongoose.Error, result: Number) {
       console.log("There are", result, "users.");
@@ -29,7 +27,7 @@ db.once("open", function () {
 const app: express.Application = express();
 const port: number = Number(process.env.PORT) || 3000;
 createDumbEndpoints(app);
+createSearchEndpoints(app);
 app.listen(port, function () {
-  console.log("Serving endpoints on port", port + ".");
-  console.log("Specify port by changing the \"PORT\" environment variable.");
+  console.log("Serving on port", port + ".");
 });

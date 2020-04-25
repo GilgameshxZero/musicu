@@ -17,6 +17,7 @@ html {
 	flex-flow: column;
 
 	.main {
-		flex: 1 1 auto;
+		flex: 1 0 0;
+		overflow: hidden;
 	}
 }

@@ -20,6 +20,9 @@ interface IState {
 	songProgress: number;
 	songName: string;
 	navigatorSelection: NavigatorSelectionType;
+
+	// Explore.
+	exploreSearch: string;
 }
 
 class App extends React.Component<IProps, IState> {
@@ -31,6 +34,8 @@ class App extends React.Component<IProps, IState> {
 			songProgress: 0,
 			songName: "",
 			navigatorSelection: NavigatorSelectionType.Explore,
+
+			exploreSearch: "",
 		};
 	}
 
@@ -60,17 +65,32 @@ class App extends React.Component<IProps, IState> {
 		});
 	}
 
+	private handleExploreSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+		this.setState({
+			exploreSearch: e.target.value,
+			navigatorSelection: NavigatorSelectionType.Explore,
+		});
+	}
+
 	public render() {
 		return (
 			<div className="app">
 				<Navigator
 					navigatorSelection={this.state.navigatorSelection}
-					onNavigatorSelect={this.handleNavigatorSelect.bind(this)} />
-				<div className="main">
-					{this.state.navigatorSelection === NavigatorSelectionType.Explore &&
-						<Explore />}
-					{this.state.navigatorSelection === NavigatorSelectionType.Settings &&
-						<Settings />}
+					onNavigatorSelect={this.handleNavigatorSelect.bind(this)}
+
+					exploreSearch={this.state.exploreSearch}
+					onExploreSearchChange={this.handleExploreSearchChange.bind(this)} />
+				<div className={"main" + (
+					this.state.navigatorSelection === NavigatorSelectionType.Explore ?
+						"" : " no-display")}>
+					<Explore
+						exploreSearch={this.state.exploreSearch} />
+				</div>
+				<div className={"main" + (
+					this.state.navigatorSelection === NavigatorSelectionType.Settings ?
+						"" : " no-display")}>
+					<Settings />
 				</div>
 				<Player
 					isPlaying={this.state.isPlaying}

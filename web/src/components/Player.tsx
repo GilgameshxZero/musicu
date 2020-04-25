@@ -23,7 +23,7 @@ interface IState {
 	progress: number;
 }
 
-export default class Navigator extends React.Component<IProps, IState> {
+export default class Player extends React.Component<IProps, IState> {
 	private seekRef: React.RefObject<HTMLDivElement>;
 
 	public constructor(props: IProps) {
@@ -47,7 +47,8 @@ export default class Navigator extends React.Component<IProps, IState> {
 	private handleSeekPointerMove(e: React.PointerEvent) {
 		const width = this.seekRef.current.clientWidth - this.seekRef.current.clientLeft;
 		this.setState({
-			progress: Math.min((e.clientX - this.seekRef.current.clientLeft) / width * 100, 100),
+			progress: Math.max(0, Math.min(100,
+				(e.clientX - this.seekRef.current.clientLeft) / width * 100)),
 		});
 	}
 

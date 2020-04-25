@@ -9,6 +9,9 @@ export enum NavigatorSelectionType {
 interface IProps {
 	navigatorSelection: NavigatorSelectionType,
 	onNavigatorSelect: (navigatorSelection: NavigatorSelectionType) => void,
+
+	exploreSearch: string,
+	onExploreSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 interface IState {
@@ -21,15 +24,15 @@ export default class Navigator extends React.Component<IProps, IState> {
 
 	private renderTab(label: string, selection: NavigatorSelectionType) {
 		return (
-			<div className="tab no-select"
+			<div className={"tab no-select" +
+				(this.props.navigatorSelection === selection ? " selected" : "")}
 				onClick={() => {
 					this.props.onNavigatorSelect(selection);
 				}}>
 				<div className="text">
 					{label}
 				</div>
-				{this.props.navigatorSelection === selection &&
-					<div className="highlight"></div>}
+				<div className="highlight"></div>
 			</div>
 		);
 	}
@@ -41,7 +44,10 @@ export default class Navigator extends React.Component<IProps, IState> {
 					"Explore",
 					NavigatorSelectionType.Explore)}
 				<input className="search"
-					type="input" />
+					type="input"
+					placeholder="Search..."
+					value={this.props.exploreSearch}
+					onChange={this.props.onExploreSearchChange} />
 				<div className="spacer"></div>
 				{this.renderTab(
 					"Settings",

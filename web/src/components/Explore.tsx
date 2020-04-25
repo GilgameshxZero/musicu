@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Explore.scss";
-import xhrGet from "api/xhr";
+import fetchApi from "api/fetchApi";
 
 export enum SubmenuSelectionType {
 	All,
@@ -9,27 +9,23 @@ export enum SubmenuSelectionType {
 }
 
 interface IProps {
+	exploreSearch: string,
 }
 
 interface IState {
 	submenuSelection: SubmenuSelectionType,
+
+	searchResponse: string,
 }
 
 export default class Explore extends React.Component<IProps, IState> {
-	private text: string;
 	public constructor(props: IProps) {
 		super(props);
 
 		this.state = {
 			submenuSelection: SubmenuSelectionType.All,
+			searchResponse: "[]",
 		};
-
-		xhrGet("http://localhost:3000/dumb", (response: string) => {
-			this.text = response;
-			this.forceUpdate();
-		}, (status: number) => {
-			console.log("Failed:", status);
-		});
 	}
 
 	private renderSubmenuSelection(label: string, selection: SubmenuSelectionType) {
@@ -46,13 +42,37 @@ export default class Explore extends React.Component<IProps, IState> {
 		)
 	}
 
+	public componentDidUpdate(prevProps: IProps) {
+		if (this.props.exploreSearch !== prevProps.exploreSearch) {
+			fetchApi({
+				url: "/search?query=" + this.props.exploreSearch,
+			}).then((response: string) => {
+				this.setState({
+					searchResponse: response,
+				});
+			});
+		}
+	}
+
 	public render() {
 		return (
 			<div className="explore">
 				<div className="submenu no-select">
+					<div className="section">
+						{this.renderSubmenuSelection("All", SubmenuSelectionType.All)}
+						{this.renderSubmenuSelection("Youtube", SubmenuSelectionType.Youtube)}
+					</div>
+					<div className="section">
+						playlists
+					</div>
 				</div>
 				<div className="viewer">
-					{this.text}
+					{JSON.parse(this.state.searchResponse).map((videoId: string) => (
+						<div key={videoId}>
+							<a href={"https://www.youtube.com/watch?v=" + videoId}>{videoId}</a><br />
+							<img src={"https://img.youtube.com/vi/" + videoId + "/hqdefault.jpg"} />
+						</div>
+					))}
 				</div>
 			</div>
 		);

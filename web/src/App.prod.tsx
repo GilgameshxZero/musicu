@@ -1,2 +1,10 @@
+// Disable console logs on production.
 console.log = () => {};
-import "./components/App.tsx";
+
+// Use production backend host.
+import {
+	setApiHost
+} from "api/fetchApi";
+setApiHost("https://api.mus.icu");
+
+import "components/App.tsx";
